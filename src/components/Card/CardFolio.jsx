@@ -7,7 +7,10 @@
 
 const CardFolio = ({pRegistry,pSeccion,pTomo,pFolio,pObjectId})=>{
 
+    const show = () =>{
+        alert('mostrando' + pObjectId);
 
+    }
     
 
     return (
@@ -15,12 +18,12 @@ const CardFolio = ({pRegistry,pSeccion,pTomo,pFolio,pObjectId})=>{
                         <div className="container">
                         <p className="folio-number">
                             <b>Tomo:</b> { pTomo }
-                            <b>Folio:</b> { pFolio }
+                            <b> Folio:</b> { pFolio }
                         </p>
                     </div>
                     <hr/>
         
-                    <img  src={getUrlImage(pRegistry,pSeccion,pTomo,pFolio,pObjectId) } className="el-image"  alt="'Folio:' + folio"/>
+                    <img  src={getUrlImage(pRegistry,pSeccion,pTomo,pFolio,pObjectId) } onClick={show}  className="el-image"  alt="'Folio:' + folio"/>
                     </div>
     )
 };

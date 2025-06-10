@@ -21,7 +21,12 @@ export const GeneralProvider = ({ children }) => {
         }
         ,data: {
             selected : null,
-        }}
+        }
+        ,folio: {
+            selected : null,
+        }
+        ,images: []
+    }
 
     });
 

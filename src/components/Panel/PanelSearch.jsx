@@ -8,21 +8,23 @@ import InputFolio from '../InputFolio';
 import '../../assets/css/PanelSearch.css' 
 import CircularWithValueLabel from '../Progress/Progress'
 import { LoadingProvider } from '../../context/LoadingProvider';
-import { GeneralProvider } from '../../context/GeneralProvider';
+
 
 const  PanelSearch =()=> {
 
-  return (<GeneralProvider>
-    <LoadingProvider>
+  return (<>
+    
         <section    >
           <Box sx={{ my: 2 }} >
             <div className="search-box">
               <h2 style={{ display: "flex",alignItems: "center", flexDirection: "column" }} >Tomos escaneados del Registro del Estado Civil</h2>
               <hr />
+               <div style={{display: "flex", alignContent: "flex-start",  justifyContent: "center"}}>
               <ListProvincias ></ListProvincias>
               <ListRegistros></ListRegistros>
               <ListSecciones></ListSecciones>
-              <div>
+              </div>
+              <div  style={{display: "flex", alignContent: "flex-start",  justifyContent: "center"}}>
                 <ListTomos></ListTomos>
                 <InputFolio></InputFolio>
               </div>
@@ -31,7 +33,7 @@ const  PanelSearch =()=> {
             <div style={{ align: "center" }}> <CircularWithValueLabel></CircularWithValueLabel> </div>
           </Box>
         </section>
-    </LoadingProvider></GeneralProvider>);
+    </>);
 };
 
 

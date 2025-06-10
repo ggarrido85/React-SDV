@@ -19,7 +19,7 @@ import { FormHelperText } from "@mui/material";
 export default function SelectBasic({ pTittle, pApi, pFirst = false, pParams = {}, pDataType, pParentType, pMapping }) {
 
 
-    /**
+  /**
    * General context
    */
   const {data,setData} = UseGeneralSingleton();
@@ -60,6 +60,8 @@ export default function SelectBasic({ pTittle, pApi, pFirst = false, pParams = {
    */
   const handleChange = (event) => {
     data.store[pDataType].selected = event.target.value;
+    // clean images
+    data.store.images = [];
     setData(prevState => (
       {...prevState,
         store : data.store
