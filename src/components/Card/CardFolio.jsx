@@ -5,10 +5,11 @@
         return  apis.THUMBNAIL_IMAGE_URL;
 } 
 
-const CardFolio = ({pRegistry,pSeccion,pTomo,pFolio,pObjectId})=>{
+const CardFolio = ({pIndex,pRegistry,pSeccion,pTomo,pFolio,pObjectId,pDisplay})=>{
 
     const show = () =>{
-        alert('mostrando' + pObjectId);
+        //alert('mostrando' + pIndex);
+        pDisplay(pIndex)
 
     }
     
