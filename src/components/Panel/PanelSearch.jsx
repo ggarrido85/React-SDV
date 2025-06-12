@@ -10,8 +10,7 @@ import CircularWithValueLabel from '../Progress/Progress'
 import { UseLoadingContext } from '../../context/LoadingProvider';
 import { UseGeneralSingleton } from "../../context/GeneralProvider";
 import axios from "axios";
-import apis from "../../assets/urls/apis";
-import { useState } from "react";
+import apis from "../../assets/urls/apis"; 
 
 
 
@@ -26,14 +25,15 @@ const PanelSearch = () => {
   const contextSeccion = data.store['secciones'].selected;
   const contextTomo = data.store['data'].selected;
   const contextFolio = data.store['folio'].selected;
-  const images = data.store['images'];
 
   const isDisabled = !(conextRegistry !== null && contextSeccion !== null && contextTomo !== null);
 
-  const [isFirstCall,setFirstCall] = useState(false);
+  //const [isFirstCall,setFirstCall] = useState(false);
 
   const search = (pFisrtCall = false) => {
-    setFirstCall(pFisrtCall);
+    if(pFisrtCall)
+      data.store.images = [];
+    // setFirstCall(pFisrtCall);
     // Change global state
     loadingContext.setLoading({
       isLoading: true,
@@ -46,7 +46,8 @@ const PanelSearch = () => {
         seccionID: contextSeccion,
         tomo: contextTomo,
         folio: contextFolio,
-        cant: 25
+        begin: data.store.images.length,
+        cant: 20
       },
     })
       .then((response) => {
@@ -59,21 +60,17 @@ const PanelSearch = () => {
             "tomo": item.tomo,
             "folio": item.folio
           }
-        ));
-        // Prepare to load by Singleton and react all components
-        if(isFirstCall)
-          data.store.images = images;
-        else
-          data.store.images=data.store.images.concat(images);
-
-        setFirstCall(false);  
-        setData(prevState => (
-          {
+        )); 
+        // Prepare to load by Singleton and react all components 
+        data.store.images=data.store.images.concat(images); 
+        data.store.imageMore = response.data.areMore;
+        // React general singleton
+        setData(prevState => ({
             ...prevState,
-            store: data.store
+            store: data.store,
+            fn: search
           }));
-
-
+        // End loading
         loadingContext.setLoading({
           isLoading: false,
           progress: 100,

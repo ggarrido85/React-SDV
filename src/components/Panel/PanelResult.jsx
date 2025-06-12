@@ -4,6 +4,7 @@ import CardFolio from "../Card/CardFolio";
 import { useState } from "react";
 import apis from "../../assets/urls/apis";
 import { UseGeneralSingleton } from "../../context/GeneralProvider";
+//import { UseLoadingContext } from '../../context/LoadingProvider';
 import { InfiniteScrollCmp } from "../InfiniteScroll/InfiniteScroll";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -19,6 +20,8 @@ export const getUrlImage = (objectId) => {
  */
 const PanelResult = () => {
    const { data } = UseGeneralSingleton();
+   //const loadingContext = UseLoadingContext();
+
    //let imagenes = data.store.images;
    const [visible, setVisible] = useState(false);
 
@@ -48,6 +51,7 @@ const PanelResult = () => {
    // off: there is no data
    if (data.store.images.length === 0) return <div></div>;
 
+   //if(loadingContext.value.isLoading) return <div></div>;
    return (
       <div
          className="results-box"  id="scrollableDiv"
@@ -58,10 +62,10 @@ const PanelResult = () => {
          <div className="grid-container"  >
             <InfiniteScroll
             dataLength={data.store.images.length}
-            next={()=>{console.log('next')}}
+            next={data.fn}
             //style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
             //inverse={true} //
-            hasMore={true}
+            hasMore={data.store.imageMore}
             loader={<h4>Cargando...</h4>}
             //scrollableTarget="scrollableDiv"
             >
@@ -83,6 +87,7 @@ const PanelResult = () => {
          <Viewer
             visible={visible}
             activeIndex={index}
+            noNavbar = {true}
             onClose={() => {
                setVisible(false);
             }}

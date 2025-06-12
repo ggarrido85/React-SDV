@@ -6,6 +6,9 @@ export const GeneralProvider = ({ children }) => {
     // Estado
     const [data, setData] = useState({
         counter: 0,
+        fn: {
+
+        },
         store : {
         none : {
             selected : null,
@@ -31,7 +34,8 @@ export const GeneralProvider = ({ children }) => {
             selected : null,
             param: 'folio'
         }
-        ,images: []
+        ,
+        images: []
     }
 
     });
