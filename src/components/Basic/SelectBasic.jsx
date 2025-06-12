@@ -1,13 +1,13 @@
-import { useState  } from "react";
+import { useState } from "react";
 import axios, { Axios } from "axios";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { UseLoadingContext } from "../../context/LoadingProvider"; 
+import { UseLoadingContext } from "../../context/LoadingProvider";
 import { UseGeneralSingleton } from "../../context/GeneralProvider";
 import { FormHelperText } from "@mui/material";
- 
+
 
 /**
  * Componet used to coprate between instances of it self
@@ -16,21 +16,16 @@ import { FormHelperText } from "@mui/material";
  * @param {*} params
  * @returns
  */
-export default function SelectBasic({ pTittle, pApi, pFirst = false, pParams = {}, pDataType, pParentType, pMapping }) {
+export default function SelectBasic({ pTittle, pApi, pFirst = false, pDataType, pParentType, pMapping }) {
 
 
   /**
    * General context
    */
-  const {data,setData} = UseGeneralSingleton();
+  const { data, setData } = UseGeneralSingleton();
 
   // TODO: set new config to general store conext
   const contextLastParentSelected = data.store[pParentType].selected;
-  const contextLastSelected = data.store[pDataType].selected;
-  /**
-   * Selected Value
-   */
-  const [idSelect, setValueSelect] = useState(contextLastSelected);
 
   /**
    * Values list
@@ -63,18 +58,33 @@ export default function SelectBasic({ pTittle, pApi, pFirst = false, pParams = {
     // clean images
     data.store.images = [];
     setData(prevState => (
-      {...prevState,
-        store : data.store
+      {
+        ...prevState,
+        store: data.store
       })
     );
-    setValueSelect(event.target.value);
   };
 
   // Only get new data in the refresh if (is first component or change de selected father and loading is off)
-  if ( ( (pFirst && values == null) || lastParentSelected != contextLastParentSelected) && !isLoading ) {
+  if (((pFirst && values == null) || lastParentSelected != contextLastParentSelected) && !isLoading) {
     // Clean values an id selected
     setValuesSelect(null);
-    setValueSelect(null);
+
+    // TODO: i dont like this (change global state without reacting) for the future make a class to manage these behaviors
+    data.store[pDataType].selected = null;
+
+    // Create dynamic params
+    const objectMap = (obj, fn) =>
+      Object.fromEntries(
+        Object.entries(obj).map(
+          ([k, v], i) => [v.param, fn(v, k, i)]
+        )
+      )
+    let p = objectMap(data.store, (v,k,i)=>{
+      if(v.selected != null && v.param != null )
+          return v.selected;
+        return null;
+    });
 
     // Change local state
     setIsLoading(true);
@@ -83,10 +93,11 @@ export default function SelectBasic({ pTittle, pApi, pFirst = false, pParams = {
       isLoading: true,
       progress: 10,
     });
-    // Fetch 
+
+    // Fetch
     axios.get(pApi, {
-        params: pParams,
-      })
+      params: p,
+    })
       .then((response) => {
         const dataR = response.data[pDataType].map((item) => ({
           id: item[pMapping.id],
@@ -110,13 +121,13 @@ export default function SelectBasic({ pTittle, pApi, pFirst = false, pParams = {
    */
   return (
     <FormControl sx={{ m: 1, width: 350, minWidth: 80 }}>
-      <InputLabel required id={"demo-simple-select-autowidth-label" +pTittle }>
+      <InputLabel required id={"demo-simple-select-autowidth-label" + pTittle}>
         {pTittle}
       </InputLabel>
       <Select
         labelId="demo-simple-select-autowidth-label"
         id={"demo-simple-select-autowidth" + pTittle}
-        value={idSelect!= null ? idSelect : ''}
+        value={data.store[pDataType].selected != null ? data.store[pDataType].selected : ''}
         onChange={handleChange}
         autoWidth
         label={pTittle}
@@ -130,7 +141,7 @@ export default function SelectBasic({ pTittle, pApi, pFirst = false, pParams = {
             </MenuItem>
           ))}
       </Select>
-          <FormHelperText> {(loadingContext.value.isLoading || values == null ) ? "." :""}</FormHelperText> 
+      <FormHelperText> {(loadingContext.value.isLoading || values == null) ? "." : ""}</FormHelperText>
     </FormControl>
   );
 }

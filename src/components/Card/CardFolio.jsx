@@ -1,32 +1,33 @@
- import apis from '../../assets/urls/apis'
+import apis from '../../assets/urls/apis'
 
- export const getUrlImage =(registry,seccion,tomo,folio,objectId)=>{
+/**
+* Thumbnail for main viewer
+*/
+export const getUrlImage = (objectId) => {
+    return apis.THUMBNAIL_IMAGE_URL + "?objectID=" + objectId +"&hhh";
+}
 
-        return  apis.THUMBNAIL_IMAGE_URL;
-} 
+const CardFolio = ({ pIndex, pRegistry, pSeccion, pTomo, pFolio, pObjectId, pDisplay }) => {
 
-const CardFolio = ({pIndex,pRegistry,pSeccion,pTomo,pFolio,pObjectId,pDisplay})=>{
-
-    const show = () =>{
-        //alert('mostrando' + pIndex);
-        pDisplay(pIndex)
+    /** Overload display for future actions */
+    const show = () => {
+        pDisplay(pIndex);
 
     }
-    
-
+    const url = getUrlImage(pObjectId);
     return (
-        <div   className="polaroid"  >
-                        <div className="container">
-                        <p className="folio-number">
-                            <b>Tomo:</b> { pTomo }
-                            <b> Folio:</b> { pFolio }
-                        </p>
-                    </div>
-                    <hr/>
-        
-                    <img  src={getUrlImage(pRegistry,pSeccion,pTomo,pFolio,pObjectId) } onClick={show}  className="el-image"  alt="'Folio:' + folio"/>
-                    </div>
+        <div className="polaroid"  >
+            <div className="container">
+                <p className="folio-number">
+                    <b>Tomo:</b> {pTomo}
+                    <b> Folio:</b> {pFolio}
+                </p>
+            </div>
+            <hr />
+
+            <img src={url} onClick={show} className="el-image" alt={"Folio: " + pTomo} />
+        </div>
     )
 };
 
-export default  CardFolio;
+export default CardFolio;

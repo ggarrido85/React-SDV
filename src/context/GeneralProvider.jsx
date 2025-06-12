@@ -9,21 +9,27 @@ export const GeneralProvider = ({ children }) => {
         store : {
         none : {
             selected : null,
+            param: null
         },
         provincias: {
             selected : null,
+            param: "provinciaID"
         },
         registros: {
             selected : null,
+            param: "registroID"
         },
         secciones: {
             selected : null,
+            param: "seccionID"
         }
         ,data: {
             selected : null,
+            param: "tomo"
         }
         ,folio: {
             selected : null,
+            param: 'folio'
         }
         ,images: []
     }
