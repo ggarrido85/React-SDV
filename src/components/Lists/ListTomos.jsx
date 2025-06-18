@@ -14,7 +14,10 @@ export default function ListTomos() {
       pDataType="data"
       pParentType="secciones"
       pApi={apis.AVAILABLE_TOMOS}
-      pMapping={{ id: 0, value: 0 }}></SelectBasic>
+      pMapping={(item)=>({
+                    id: item,
+                    value: item,
+                  })}></SelectBasic>
   );
 
 };

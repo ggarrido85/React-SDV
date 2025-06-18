@@ -99,10 +99,18 @@ export default function SelectBasic({ pTittle, pApi, pFirst = false, pDataType, 
       params: p,
     })
       .then((response) => {
-        const dataR = response.data[pDataType].map((item) => ({
-          id: item[pMapping.id],
-          value: item[pMapping.value],
-        }));
+        var dataR = [];
+        if(typeof pMapping === 'object') {
+          dataR = response.data[pDataType].map((item) => ({
+                    id: item[pMapping.id],
+                    value: item[pMapping.value],
+                  }));
+        }
+        else {
+          if(typeof pMapping === 'function'){
+            dataR = response.data[pDataType].map(pMapping);
+          }
+        }
         // Set new values
         setValuesSelect(dataR);
         // set new parent selected state

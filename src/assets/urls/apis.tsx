@@ -8,7 +8,7 @@ const prod = {
 
   AVAILABLE_TOMOS: '../ImagenesMinjus/controllers/index.php/Objects/getAvailableTomos',
 
-  IMAGES: '../ImagenesMinjus/controllers/index.php/Objects/getTomo',
+  IMAGES: '../ImagenesMinjus/controllers/index.php/Objects/getTomoOnDemand', 
 
   THUMBNAIL_IMAGE_URL: '../ImagenesMinjus/controllers/index.php/Picture/getThumbnail',
 
@@ -49,4 +49,4 @@ const dev = {
   FULL_IMAGE_URL: 'https://wf-e.3.5.4.prod.xetid.cu/lib/img/getFull.jpeg',
 }
 
-export default devStaging; 
+export default prod; 

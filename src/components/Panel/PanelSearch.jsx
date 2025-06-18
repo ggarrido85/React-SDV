@@ -60,10 +60,11 @@ const PanelSearch = () => {
             "tomo": item.tomo,
             "folio": item.folio
           }
-        )); 
+        ));
         // Prepare to load by Singleton and react all components 
         data.store.images=data.store.images.concat(images); 
         data.store.imageMore = response.data.areMore;
+        data.store.imageCant = response.data.total;
         // React general singleton
         setData(prevState => ({
             ...prevState,

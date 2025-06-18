@@ -63,6 +63,7 @@ const PanelResult = () => {
          infinite-scroll-disabled="busy"
          infinite-scroll-distance="25"
       >
+         <div className="grid-container" >Se encontraron {data.store.imageCant} imagen(es) </div>
          <div className="grid-container"  >
             <InfiniteScroll
                dataLength={data.store.images.length}
