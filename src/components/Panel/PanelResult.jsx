@@ -7,6 +7,8 @@ import { UseGeneralSingleton } from "../../context/GeneralProvider";
 //import { UseLoadingContext } from '../../context/LoadingProvider';
 //import { InfiniteScrollCmp } from "../InfiniteScroll/InfiniteScroll";
 import InfiniteScroll from "react-infinite-scroll-component";
+//import BackToTop from 'react-back-top';
+import BackToTopButton from "../Button/BackToTopButton.jsx";
 
 
 
@@ -20,7 +22,7 @@ const PanelResult = () => {
    //let imagenes = data.store.images;
    const [visible, setVisible] = useState(false);
 
-   const [index, setIndex] = useState(0);
+   const [index, setIndex] = useState(-1);
 
    // Index for component card
    let fIndex = 0;
@@ -109,6 +111,9 @@ const PanelResult = () => {
             }}
             images={visual}
          />
+         
+    
+           <BackToTopButton />
       </div>
    );
 };

@@ -35,7 +35,7 @@ const CardFolio = ({ pIndex, pRegistry, pSeccion, pTomo, pFolio, pObjectId, pDis
             </div>
             <hr />
 
-            <img src={getUrlImage} onClick={show} className="el-image" alt={"Folio: " + pTomo} />
+            <img src={getUrlImage(pObjectId)} onClick={show} className="el-image" alt={"Folio: " + pTomo} />
         </div>
     )
 };
