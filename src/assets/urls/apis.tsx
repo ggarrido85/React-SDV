@@ -17,19 +17,19 @@ const prod = {
 
 
 const devStaging = {
-  PROVINCIAS: 'https://wf-e.3.5.4.prod.xetid.cu/sysworkflow/es-ES/neoclassic/ImagenesMinjus/controllers/index.php/Objects/getAllProvincias',
+  PROVINCIAS: 'https://raw.githubusercontent.com/ggarrido85/React-SDV/refs/heads/main/src/fetch/provinces.json',
 
-  REGISTROS: 'https://wf-e.3.5.4.prod.xetid.cu/sysworkflow/es-ES/neoclassic/ImagenesMinjus/controllers/index.php/Objects/getRegistrosByProvincia',
+  REGISTROS: 'https://raw.githubusercontent.com/ggarrido85/React-SDV/refs/heads/main/src/fetch/registry.json',
 
-  SECCIONES: 'https://wf-e.3.5.4.prod.xetid.cu/sysworkflow/es-ES/neoclassic/ImagenesMinjus/controllers/index.php/Objects/getSecciones',
+  SECCIONES: 'https://raw.githubusercontent.com/ggarrido85/React-SDV/refs/heads/main/src/fetch/seccions.json',
 
-  AVAILABLE_TOMOS: 'https://wf-e.3.5.4.prod.xetid.cu/sysworkflow/es-ES/neoclassic/ImagenesMinjus/controllers/index.php/Objects/getAvailableTomos',
+  AVAILABLE_TOMOS: 'https://raw.githubusercontent.com/ggarrido85/React-SDV/refs/heads/main/src/fetch/tomos.json',
 
-  IMAGES: 'https://wf-e.3.5.4.prod.xetid.cu/sysworkflow/es-ES/neoclassic/ImagenesMinjus/controllers/index.php/Objects/getTomo',
+  IMAGES: 'https://raw.githubusercontent.com/ggarrido85/React-SDV/refs/heads/main/src/fetch/images.json',
 
-  THUMBNAIL_IMAGE_URL: 'https://wf-e.3.5.4.prod.xetid.cu/sysworkflow/es-ES/neoclassic/ImagenesMinjus/controllers/index.php/Picture/getThumbnail',
+  THUMBNAIL_IMAGE_URL: 'https://raw.githubusercontent.com/ggarrido85/React-SDV/refs/heads/main/src/fetch/getThumbnail.jpeg',
 
-  FULL_IMAGE_URL: 'https://wf-e.3.5.4.prod.xetid.cu/sysworkflow/es-ES/neoclassic/ImagenesMinjus/controllers/index.php/Picture/getFull',
+  FULL_IMAGE_URL: 'https://raw.githubusercontent.com/ggarrido85/React-SDV/refs/heads/main/src/fetch/getFull.jpeg',
 }
 
 
@@ -49,4 +49,4 @@ const dev = {
   FULL_IMAGE_URL: 'https://wf-e.3.5.4.prod.xetid.cu/lib/img/getFull.jpeg',
 }
 
-export default dev; 
+export default devStaging; 
