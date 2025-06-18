@@ -80,7 +80,7 @@ export default function SelectBasic({ pTittle, pApi, pFirst = false, pDataType, 
           ([k, v], i) => [v.param, fn(v, k, i)]
         )
       )
-    let p = objectMap(data.store, (v,k,i)=>{
+    let p = objectMap(data.store, (v/*,k,i*/)=>{
       if(v.selected != null && v.param != null )
           return v.selected;
         return null;
