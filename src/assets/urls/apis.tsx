@@ -49,4 +49,4 @@ const dev = {
   FULL_IMAGE_URL: 'https://wf-e.3.5.4.prod.xetid.cu/lib/img/getFull.jpeg',
 }
 
-export default prod; 
+export default dev; 
